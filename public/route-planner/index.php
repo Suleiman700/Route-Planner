@@ -4,21 +4,21 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
     <title>
         Argon Dashboard 2 by Creative Tim
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
     <!-- Nucleo Icons -->
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet"/>
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <link href="../../assets/css/nucleo-icons.css" rel="stylesheet"/>
+    <link href="../../assets/css/nucleo-svg.css" rel="stylesheet"/>
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <link href="../../assets/css/nucleo-svg.css" rel="stylesheet"/>
     <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
+    <link id="pagestyle" href="../../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
@@ -40,7 +40,7 @@
            aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
            target="_blank">
-            <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
+            <img src="../../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
             <span class="ms-1 font-weight-bold">Argon Dashboard 2</span>
         </a>
     </div>
@@ -118,7 +118,7 @@
     </div>
     <div class="sidenav-footer mx-3 ">
         <div class="card card-plain shadow-none" id="sidenavCard">
-            <img class="w-50 mx-auto" src="../assets/img/illustrations/icon-documentation.svg"
+            <img class="w-50 mx-auto" src="../../assets/img/illustrations/icon-documentation.svg"
                  alt="sidebar_illustration">
             <div class="card-body text-center p-3 w-100 pt-0">
                 <div class="docs-info">
@@ -186,7 +186,7 @@
                                 <a class="dropdown-item border-radius-md" href="javascript:">
                                     <div class="d-flex py-1">
                                         <div class="my-auto">
-                                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                                            <img src="../../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
                                         </div>
                                         <div class="d-flex flex-column justify-content-center">
                                             <h6 class="text-sm font-weight-normal mb-1">
@@ -204,7 +204,7 @@
                                 <a class="dropdown-item border-radius-md" href="javascript:">
                                     <div class="d-flex py-1">
                                         <div class="my-auto">
-                                            <img src="../assets/img/small-logos/logo-spotify.svg"
+                                            <img src="../../assets/img/small-logos/logo-spotify.svg"
                                                  class="avatar avatar-sm bg-gradient-dark  me-3 ">
                                         </div>
                                         <div class="d-flex flex-column justify-content-center">
@@ -262,7 +262,7 @@
         </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-4" id="main">
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
@@ -313,14 +313,19 @@
 <!--                                </div>-->
 <!--                            </div>-->
                             <div class="col-sm-12">
-                                <div class="btn btn-primary" data-identifier="button-calculate-route">Calculate Route</div>
-                                <div class="btn btn-primary" data-identifier="button-delete-route">Delete Route</div>
+                                <button class="btn btn-primary text-white" id="button-delete-markers" disabled>Delete Markers</button>
+                                <button class="btn btn-primary text-white" id="button-calculate-route" disabled>Calculate Route</button>
+                                <button class="btn btn-primary text-white" id="button-delete-route" disabled>Delete Route</button>
                             </div>
                             <div class="col-sm-12">
                                 <div id="map"></div>
                                 <style>
                                     #map { height: 500px; }
                                 </style>
+                            </div>
+                            <div class="col-sm-12 my-3">
+                                <ul class="list-group overflow-auto p-2" id="markers-list">
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -456,10 +461,10 @@
     </div>
 </div>
 <!--   Core JS Files   -->
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap.min.js"></script>
-<script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-<script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+<script src="../../assets/js/core/popper.min.js"></script>
+<script src="../../assets/js/core/bootstrap.min.js"></script>
+<script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -472,111 +477,10 @@
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+<script src="../../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 
-<script type="module">
-    import Leaflet from '../src/Classes/Leaflet/Leaflet.js';
-    const LeafletIns = new Leaflet('map');
-
-    LeafletIns.buildMap();
-
-    const searchBtn = document.querySelector('#search-map-location');
-    searchBtn.addEventListener('click', () => {
-        LeafletIns.search('Bueina israel');
-    })
-
-    // On marker add
-    LeafletIns._storage.EventBus.on(LeafletIns._config.events.MARKER_ADD, (_marker) => {
-        const markersList = document.getElementById('markers-list');
-
-        // Remove all highlighted items
-        const listItems = markersList.querySelectorAll(`li`)
-        listItems.forEach(listItem => listItem.classList.remove('active'))
-
-        const markerName = _marker.data.name;
-
-        // Count markers in list
-        const countMarkersInList = markersList.querySelectorAll('li')
-        const markerNumber = countMarkersInList.length + 1;
-
-        // Add new marker to list
-        const listItem = document.createElement('li');
-        listItem.dataset._leaflet_id = _marker._leaflet_id;
-        listItem.classList.add('list-group-item', 'active');
-        listItem.innerHTML = `
-           <div class="row">
-               <div class="col-10">
-                    Marker ${markerNumber} ${markerName? ' - ' + markerName:''}
-               </div>
-               <div class="col-2">
-                    <i class="fa fa-eye" data-identifier="focus-on-marker" style="cursor: pointer;"></i>
-               </div>
-           </div>
-        `;
-
-        listItem.querySelector('[data-identifier="focus-on-marker"]').addEventListener('click', () => {
-            LeafletIns._storage.map.setView(_marker.getLatLng());
-            _marker.openPopup();
-
-            // Emit event
-            LeafletIns._storage.EventBus.emit(LeafletIns._config.events.MARKER.FOCUS, _marker);
-        });
-
-        markersList.appendChild(listItem);
-    })
-
-    // On marker delete
-    LeafletIns._storage.EventBus.on(LeafletIns._config.events.MARKER_DELETE, (_marker) => {
-        // Remove marker from list
-        const markersList = document.getElementById('markers-list');
-        const listItem = markersList.querySelector(`li[data-_leaflet_id="${_marker._leaflet_id}"]`)
-        listItem.remove();
-    })
-
-    // On marker click
-    LeafletIns._storage.EventBus.on(LeafletIns._config.events.MARKER_CLICK, (_marker) => {
-        const markersList = document.getElementById('markers-list');
-
-        // Remove all highlighted items
-        const listItems = markersList.querySelectorAll(`li`)
-        listItems.forEach(listItem => listItem.classList.remove('active'))
-
-        // Highlight marker item in list
-        const listItem = markersList.querySelector(`li[data-_leaflet_id="${_marker._leaflet_id}"]`)
-        listItem.classList.add('active')
-    })
-
-    // On marker focus
-    LeafletIns._storage.EventBus.on(LeafletIns._config.events.MARKER.FOCUS, (_marker) => {
-        const markersList = document.getElementById('markers-list');
-
-        // Remove all highlighted items
-        const listItems = markersList.querySelectorAll(`li`)
-        listItems.forEach(listItem => listItem.classList.remove('active'))
-
-        // Highlight marker item in list
-        const listItem = markersList.querySelector(`li[data-_leaflet_id="${_marker._leaflet_id}"]`)
-        listItem.classList.add('active')
-    })
-
-    // On delete all markers button click
-    document.querySelector('[data-identifier="delete-all-markers"]').addEventListener('click', () => {
-        // Delete markers from map
-        LeafletIns._storage.markers.forEach(marker => {
-            LeafletIns.deleteMarker(marker);
-        })
-
-        // Delete marker from list
-        document.querySelector('#markers-list').innerHTML = '';
-    })
-
-    document.querySelector('[data-identifier=calculate-route]').addEventListener('click', () => {
-        LeafletIns.calculateRoute();
-    })
-    document.querySelector('[data-identifier=delete-route]').addEventListener('click', () => {
-        LeafletIns.deleteRoute();
-    })
-</script>
+<script src="./js/init.js" type="module"></script>
+<script src="../../src/Libs/sweetalert/sweetalert_11.12.1.js"></script>
 
 </body>
 
