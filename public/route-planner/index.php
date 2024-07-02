@@ -264,7 +264,7 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4" id="main">
         <div class="row">
-            <div class="col-12">
+            <div class="col-sm-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
                         <div class="row">
@@ -280,7 +280,6 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        123
                     </div>
                 </div>
             </div>
@@ -291,42 +290,34 @@
 <!--                    <div class="card-header pb-0">-->
 <!--                        <h6>Projects table</h6>-->
 <!--                    </div>-->
-                    <div class="card-body p-2">
-                        <div class="row container my-3">
-<!--                            <div class="col-sm-12 col-md-4">-->
-<!--                                <div class="col-sm-12">-->
-<!--                                    <div class="dropdown">-->
-<!--                                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                                            Options-->
-<!--                                        </button>-->
-<!--                                        <ul class="dropdown-menu">-->
-<!--                                            <li><p class="dropdown-item" data-identifier="delete-all-markers">Delete all markers</p></li>-->
-<!--                                            <li><p class="dropdown-item" data-identifier="calculate-route">Calculate route</p></li>-->
-<!--                                            <li><p class="dropdown-item" data-identifier="delete-route">Delete route</p></li>-->
-<!--                                        </ul>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="col-sm-12">-->
-<!--                                    <ul class="list-group overflow-auto p-2" id="markers-list" style="height: 500px;">-->
-<!--&lt;!&ndash;                                        <p>No markers yet</p>&ndash;&gt;-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                            </div>-->
-                            <div class="col-sm-12">
-                                <button class="btn btn-primary text-white" id="button-delete-markers" disabled>Delete Markers</button>
-                                <button class="btn btn-primary text-white" id="button-calculate-route" disabled>Calculate Route</button>
-                                <button class="btn btn-primary text-white" id="button-delete-route" disabled>Delete Route</button>
-                            </div>
+                    <div class="card-body p-4">
+                        <div class="row">
                             <div class="col-sm-12">
                                 <div id="map"></div>
                                 <style>
                                     #map { height: 500px; }
                                 </style>
                             </div>
-                            <div class="col-sm-12 my-3">
-                                <ul class="list-group overflow-auto p-2" id="markers-list">
-                                </ul>
+                            <div class="col-sm-12 mt-3 text-center">
+                                <button class="btn btn-primary text-white" id="button-delete-markers" disabled>Delete Markers</button>
+                                <button class="btn btn-primary text-white" id="button-calculate-route" disabled>Calculate Route</button>
+                                <button class="btn btn-primary text-white" id="button-delete-route" disabled>Delete Route</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <h6>Map Markers</h6>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row">
+                            <ul class="list-group overflow-auto p-2" id="markers-list">
+                            </ul>
                         </div>
                     </div>
                 </div>

@@ -29,7 +29,10 @@ const deleteMarkersBtn = new ButtonManager('main', 'button-delete-markers', () =
     // Disable buttons
     deleteMarkersBtn.enabled(false);
     calculateRouteBtn.enabled(false);
-    deleteMarkersBtn.enabled(false);
+    deleteRouteBtn.enabled(false);
+
+    // Delete route
+    LeafletIns.deleteRoute();
 })
 deleteMarkersBtn.onClick();
 
@@ -155,10 +158,22 @@ LeafletIns._storage.EventBus.on(LeafletIns._config.events.MARKER.FOCUS, (_marker
     listItem.classList.add('active')
 })
 
+// On route generating
+LeafletIns._storage.EventBus.on(LeafletIns._config.events.ROUTE.GENERATE, (_waypoint) => {
+    // Enable buttons
+    calculateRouteBtn.enabled(true);
+    deleteRouteBtn.enabled(true);
+})
 
-document.querySelector('[data-identifier=calculate-route]').addEventListener('click', () => {
-    LeafletIns.calculateRoute();
+// On route delete
+LeafletIns._storage.EventBus.on(LeafletIns._config.events.ROUTE.DELETE, (_waypoint) => {
+    deleteRouteBtn.enabled(false);
 })
-document.querySelector('[data-identifier=delete-route]').addEventListener('click', () => {
-    LeafletIns.deleteRoute();
-})
+
+
+// document.querySelector('[data-identifier=calculate-route]').addEventListener('click', () => {
+//     LeafletIns.calculateRoute();
+// })
+// document.querySelector('[data-identifier=delete-route]').addEventListener('click', () => {
+//     LeafletIns.deleteRoute();
+// })

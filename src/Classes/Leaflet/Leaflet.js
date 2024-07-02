@@ -10,6 +10,10 @@ class Leaflet {
             MARKER: {
                 FOCUS: `${this.constructor.name}_MARKER_FOCUS`,
             },
+            ROUTE: {
+                GENERATE: `${this.constructor.name}_ROUTE_GENERATE`,
+                DELETE: `${this.constructor.name}_ROUTE_DELETE`,
+            },
             MARKER_ADD: `${this.constructor.name}_MARKER_ADD`,
             MARKER_DELETE: `${this.constructor.name}_MARKER_DELETE`,
             MARKER_CLICK: `${this.constructor.name}_MARKER_CLICK`,
@@ -27,7 +31,7 @@ class Leaflet {
                 },
                 defaultData: {
                     type: 'normal', // Marker type: start|normal|end
-                    name: 'Test',
+                    name: '', // Default name is now empty
                 },
             },
         },
@@ -72,7 +76,30 @@ class Leaflet {
             // Prepare marker popup
             const popupDiv = document.createElement('div');
             const nameLbl = document.createElement('p');
-            nameLbl.textContent = 'Marker Name';
+            nameLbl.textContent = 'Marker Name: ' + marker.data.name;
+            const editBtn = document.createElement('button');
+            editBtn.classList.add('btn', 'btn-primary', 'btn-xs');
+            editBtn.innerHTML = '<i class="fa fa-edit"></i> Edit Name';
+            editBtn.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Enter marker name',
+                    input: 'text',
+                    inputValue: marker.data.name,
+                    showCancelButton: true,
+                    confirmButtonText: 'Save',
+                    preConfirm: (name) => {
+                        if (!name) {
+                            Swal.showValidationMessage('Name cannot be empty');
+                        }
+                        return name;
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        marker.data.name = result.value;
+                        nameLbl.textContent = 'Marker Name: ' + marker.data.name;
+                    }
+                });
+            });
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('btn', 'btn-danger', 'btn-xs');
             deleteBtn.innerHTML = '<i class="fa fa-trash"></i> Delete';
@@ -84,10 +111,11 @@ class Leaflet {
                 this._storage.EventBus.emit(this._config.events.MARKER_DELETE, marker)
 
                 this.calculateRoute();
-            })
+            });
             popupDiv.appendChild(nameLbl);
+            popupDiv.appendChild(editBtn);
             popupDiv.appendChild(deleteBtn);
-            marker.bindPopup(popupDiv)
+            marker.bindPopup(popupDiv);
 
             marker.on('click', () => {
                 marker.openPopup();
@@ -103,7 +131,7 @@ class Leaflet {
             this._storage.markers.push(marker);
 
             // Emit event
-            this._storage.EventBus.emit(this._config.events.MARKER_ADD, marker)
+            this._storage.EventBus.emit(this._config.events.MARKER_ADD, marker);
         };
 
         this._storage.map.on('click', onMapClick);
@@ -145,8 +173,8 @@ class Leaflet {
         // Remove marker from storage
         this._storage.markers = this._storage.markers.filter(marker => marker !== _marker);
 
-        // Update route
-        this.calculateRoute();
+        // // Update route
+        // this.calculateRoute();
     }
 
     /**
@@ -167,6 +195,8 @@ class Leaflet {
                 serviceUrl: 'https://router.project-osrm.org/route/v1'
             })
         }).addTo(this._storage.map);
+
+        this._storage.EventBus.emit(this._config.events.ROUTE.GENERATE, waypoints);
     }
 
     /**
@@ -177,6 +207,8 @@ class Leaflet {
         if (this._storage.routeControl) {
             this._storage.map.removeControl(this._storage.routeControl);
             this._storage.routeControl = null; // Clear the route control reference
+
+            this._storage.EventBus.emit(this._config.events.ROUTE.DELETE);
         }
     }
 }
