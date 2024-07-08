@@ -70,7 +70,8 @@ deleteRouteBtn.onClick();
 
 // Search location button
 const searchLocationBtn = new ButtonManager('main', 'search-map-location', () => {
-    LeafletIns.search('New York');
+    const string = document.querySelector('#location-search')?.value;
+    LeafletIns.search(string);
 })
 searchLocationBtn.onClick();
 

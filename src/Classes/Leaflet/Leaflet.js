@@ -120,6 +120,8 @@ class Leaflet {
             marker.on('click', () => {
                 marker.openPopup();
 
+                console.log(marker.data.name)
+
                 // Emit event
                 this._storage.EventBus.emit(this._config.events.MARKER_CLICK, marker);
             });
